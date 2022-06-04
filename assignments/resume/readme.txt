@@ -1,0 +1,1 @@
+strm.getline(arr, 100, '\n');

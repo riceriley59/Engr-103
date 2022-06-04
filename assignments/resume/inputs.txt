@@ -1,0 +1,21 @@
+2
+4
+Riley Rice~
+riceriley59@gmail.com~
+Oregon State University~
+Major: Computer Science~
+2025 
+3.7
+Company: Target~
+Start Date: 9/19/2020~
+End Date: 1/03/2021~
+Description: I worked as a tech consultant at Target where I would help customers with tech questions
+and other stuff like that.~
+Company: Red Robin~
+Start Date: 1/03/2021~
+End Date: 9/21/2021~
+Description: That place really sucked.~
+communication 
+teamwork
+leadership
+computers
