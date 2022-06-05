@@ -1,9 +1,20 @@
+/*******************************************************************
+** Program: resume.cpp
+** Author: Riley Rice
+** Date: 06/04/2022
+** Description: This program takes in a text file from the user and then builds a resume from that text file.
+** Input: An input.txt file which will give all the information to the program (format in readme.txt).
+** Output: A text file that is named (last name on resume).txt with the organized resume.
+*******************************************************************/
+ 
+//all the libraries I need for this program
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include <string>
 #include "helper_funcs.h"
 
+//makes working with types and outputting easier
 using namespace std;
 
 //the struct to store Education Background
@@ -30,17 +41,28 @@ struct Exp {
     char des[1024]; //the description of the work experience
 };
 
-//get each skill, as a string, from the user, and store them into
-//the array of string, sk. The size of the array is sk_size.
+/*******************************************************************
+** Function: is_int()
+** Description: get each skill, as a string, from the user, and store them into
+** the array of string, sk. The size of the array is sk_size.
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 void get_skills (string sk[], int sk_size, ifstream& strm){
     for(int i = 0; i < sk_size; i++){
         strm >> sk[i];
     }
 }
 
-//get each work experience, as an Exp struct object, from the user,
-//and store them into the array of Exp, ex. The size of the array is
-//ex_size.
+/*******************************************************************
+** Function: is_int()
+** Description: get each work experience, as an Exp struct object, from the user,
+** and store them into the array of Exp, ex. The size of the array is ex_size.
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 void get_exp (Exp ex[], int ex_size, ifstream& strm){
     for(int i = 0; i < ex_size; i++){
         strm.getline(ex[i].company, 64, '~');
@@ -50,6 +72,13 @@ void get_exp (Exp ex[], int ex_size, ifstream& strm){
     }
 }
 
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 void get_basics(Basics& basic, ifstream& strm){
     strm.getline(basic.fname, 64, ' ');
     strm.getline(basic.lname, 64, '~');
@@ -60,8 +89,13 @@ void get_basics(Basics& basic, ifstream& strm){
     strm >> basic.edu.GPA;
 }
 
-//the function to build the resume with all user inputs. Create your
-//own design of resume template here. Be creative! :)
+/*******************************************************************
+** Function: is_int()
+** Description: the function to build the resume with all user inputs.
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 void build_resume (ofstream& f, Basics b, Exp ex[], int ex_size, string sk[], int sk_size){
     f << b.fname << " " << b.lname;
     f << b.email << "\n\n";
@@ -86,12 +120,26 @@ void build_resume (ofstream& f, Basics b, Exp ex[], int ex_size, string sk[], in
     }
 }
 
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 void welcome(){
     cout << "Welcome to the resume builder! Refer to the readme.txt to know the file layout required for the program \n";
     cout << "and then you can input that into the program when you run it. It will take that file and output a resume \n";
-    cout << "in another .txt file! \n\n";
+    cout << "in lastname.txt where lastname is the last name specified in your inputs resume file! \n\n";
 }
 
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 int main(){
     bool again = false;
 
@@ -103,7 +151,7 @@ int main(){
         Basics basic;
         ifstream strm;
         ofstream ostrm;
-
+        
         open_input_file(strm);
 
         int amount_of_skills = 0;
@@ -115,7 +163,9 @@ int main(){
         get_exp(exp, amount_of_exp, strm);
         get_skills(skills, amount_of_skills, strm);
 
-        string output_file = get_file_names(true);
+        char output_file[strlen(basic.lname)];
+        strcpy(output_file, basic.lname);
+        add_txt(output_file);
         ostrm.open(output_file, ofstream::trunc);
         build_resume(ostrm, basic, exp, amount_of_exp, skills, amount_of_skills);
 

@@ -1,13 +1,30 @@
+/*******************************************************************
+** Program: Helper_funcs.cpp
+** Author: Riley Rice
+** Date: 06/04/2022
+** Description: This has a bunch of helper functions for my resume program to make error handling and information
+** getting easier.
+*******************************************************************/
+
+//all the required libraries that I need for my functions
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <cstring>
 
+//makes string usage and 
 using namespace std; 
 
-bool has_spaces(string str){
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
+bool has_spaces(char str[]){
     bool has_spaces = false;
 
-    for(int i = 0; i < str.length(); i++){
+    for(int i = 0; i < strlen(str); i++){
         if(str[i] == ' '){
             has_spaces = true;
         }
@@ -16,10 +33,17 @@ bool has_spaces(string str){
     return has_spaces;
 }
 
-bool txt(string str){
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
+bool txt(char str[]){
     bool txt = false;
 
-   for(int i = 0; i < str.length(); i++){
+   for(int i = 0; i < strlen(str); i++){
        if(str[i] == '.'){
            if(str[i + 1] == 't' && str[i + 2] == 'x' && str[i + 3] == 't') {
                txt = true;
@@ -30,24 +54,36 @@ bool txt(string str){
     return txt;
 }
 
-string get_file_names(bool filetype){
-    bool input = false;
-    string file_name;
-    
-    if(filetype == true){
-        cout << "Output ";
-    }
-    else if(filetype == false){
-        cout << "Input ";
-    }
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
+void add_txt(char name[]){
+    char txt[5] = ".txt";
+    strncat(name, txt, 4);
+}
 
-    cout << "file name(add the .txt)?: ";
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
+void get_file_names(char name[]){
+    bool input = false;
+
+    cout << "Input file name?: ";
 
     do{
-        getline(cin, file_name);
+        cin.getline(name, 64, '\n');
         cout << endl;
 
-        if(!has_spaces(file_name) && txt(file_name)){
+        if(!has_spaces(name) && !txt(name)){
+            add_txt(name);
             input = true;
         }
         else{
@@ -56,15 +92,21 @@ string get_file_names(bool filetype){
         }
         
     } while(!input);
-
-    return file_name;
 }
 
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 void open_input_file(ifstream& strm){
     bool file_exists = true;
 
     do{
-        string file_name = get_file_names(false);
+        char file_name[64];
+        get_file_names(file_name);
         strm.open(file_name);
         if(!strm.is_open()){
             cout << "\nThe file couldn't be opened, try again.\n\n";
@@ -73,6 +115,13 @@ void open_input_file(ifstream& strm){
     }while(!file_exists);
 }
 
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 bool close_file(ifstream& strm){
     strm.close();
     if (strm.is_open()){
@@ -83,7 +132,13 @@ bool close_file(ifstream& strm){
     return true;
 }
 
-
+/*******************************************************************
+** Function: is_int()
+** Description: Indicate if a given string is an integer
+** Parameters: string num
+** Pre-conditions: take a string parameter
+** Post-conditions: return a value to tell if the string is an int
+*******************************************************************/
 bool q_again(){
     bool input = true;
     char c;
