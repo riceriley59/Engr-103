@@ -127,6 +127,8 @@ void build_resume (ofstream& f, Basics b, Exp ex[], int ex_size, string sk[], in
         f << ex[i].end_date;
         f << ex[i].des;
     }
+ 
+    f << endl;
 }
 
 /*******************************************************************
