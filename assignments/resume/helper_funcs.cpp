@@ -102,9 +102,10 @@ void get_file_names(char name[]){
 ** Post-conditions: it opens the ifstream and binds it to the file specified by the user
 *******************************************************************/
 void open_input_file(ifstream& strm){
-    bool file_exists = true;
+    bool file_exists;
 
     do{
+	    file_exists = true;
         char file_name[64];
         get_file_names(file_name);
         strm.open(file_name);
@@ -141,26 +142,23 @@ bool close_file(ifstream& strm){
 *******************************************************************/
 bool q_again(){
     bool input = true;
-    char c;
+    char c[64];
 
     cout << "\nDo you want to build another resume again (y-yes, n-no)?: ";
 
     do{
-        cin >> c;
+        input = true;
+        cin.getline(c, 64, '\n');
 
-        if(c == 'y'){
-            cin.clear();
-            cin.ignore(1000, '\n');
+        if(c[0] == 'y' && strlen(c) == 1){
             cout << endl;
             return true;
         }
-        else if(c == 'n'){
+        else if(c[0] == 'n' && strlen(c) == 1){
             return false;
         }
-        else if(c != 'y' && c != 'n'){
+        else{
             cout << "\nYou're input is invalid try again: ";
-            cin.clear();
-            cin.ignore(1000, '\n');
             input = false;
         }
     } while(!input);
