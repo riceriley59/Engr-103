@@ -15,11 +15,11 @@
 using namespace std; 
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: has_spaces()
+** Description: Looks at a cstring and returns true if it has spaces and false if otherwise
+** Parameters: char str[]
+** Pre-conditions: it needs an initialized cstring
+** Post-conditions: return a boolean based if there is a space or not
 *******************************************************************/
 bool has_spaces(char str[]){
     bool has_spaces = false;
@@ -34,11 +34,11 @@ bool has_spaces(char str[]){
 }
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: txt()
+** Description: Looks at a cstring and returns true if it has .txt at the end and false if otherwise
+** Parameters: char str[]
+** Pre-conditions: it needs an initialized cstring
+** Post-conditions: return a boolean value based on whether there is a .txt extension at the end
 *******************************************************************/
 bool txt(char str[]){
     bool txt = false;
@@ -55,11 +55,11 @@ bool txt(char str[]){
 }
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: add_txt()
+** Description: Adds .txt extension to the end of a cstring
+** Parameters: char name[]
+** Pre-conditions: it needs an initialized cstring
+** Post-conditions: returns the cstring with .txt concatenated at the end of it
 *******************************************************************/
 void add_txt(char name[]){
     char txt[5] = ".txt";
@@ -67,11 +67,11 @@ void add_txt(char name[]){
 }
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: get_file_names()
+** Description: gets a file name from the user with error handling
+** Parameters: char name[]
+** Pre-conditions: it needs an intialized cstring
+** Post-conditions: returns the cstring with the value given by the user now initialized in it
 *******************************************************************/
 void get_file_names(char name[]){
     bool input = false;
@@ -95,11 +95,11 @@ void get_file_names(char name[]){
 }
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: open_input_file()
+** Description: Opens an input file stream binded to a file specified by the user 
+** Parameters: ifstream& strm
+** Pre-conditions: it needs a declared ifstream
+** Post-conditions: it opens the ifstream and binds it to the file specified by the user
 *******************************************************************/
 void open_input_file(ifstream& strm){
     bool file_exists = true;
@@ -116,11 +116,11 @@ void open_input_file(ifstream& strm){
 }
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: close_file()
+** Description: closes an input file stream, and returns a boolean on whether it closes succesfully or not
+** Parameters: ifstream& strm
+** Pre-conditions: takes an ifstream parameter
+** Post-conditions: closes the file and returns a boolean value based on the succes of the closing of the stream
 *******************************************************************/
 bool close_file(ifstream& strm){
     strm.close();
@@ -133,11 +133,11 @@ bool close_file(ifstream& strm){
 }
 
 /*******************************************************************
-** Function: is_int()
-** Description: Indicate if a given string is an integer
-** Parameters: string num
-** Pre-conditions: take a string parameter
-** Post-conditions: return a value to tell if the string is an int
+** Function: q_again()
+** Description: Asks the user if they want to run the program again, error handling is also implemented
+** Parameters: Null
+** Pre-conditions: NULL
+** Post-conditions: returns a boolean value based on whether the user wants to play again or not
 *******************************************************************/
 bool q_again(){
     bool input = true;
